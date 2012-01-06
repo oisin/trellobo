@@ -3,4 +3,5 @@ This is a simple IRC bot written using [cinch](http://github.com/cinchrb/cinch).
 
 ## Implementation Notes
 
-*it doesn't work yet - have to suss out Trello API first*
+The bot is online and will respond in a stupid fashion if address directly. I've to suss out the Trello API before
+it can do anything useful.
