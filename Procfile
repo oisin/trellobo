@@ -1,1 +1,1 @@
-trellobo: bundle exec ./trellobo.rb
+trellobo: bundle exec ruby ./trellobo.rb
