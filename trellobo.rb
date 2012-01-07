@@ -13,7 +13,7 @@ bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.org"
     c.nick = "trellobot"
-    c.channels = ["#oisintester"]
+    c.channels = ["#dublinjs"]
     sync_board "https://api.trello.com/1/boards/4f05b412cf33c09c016a90df/lists"
   end
 
