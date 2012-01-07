@@ -13,12 +13,11 @@ bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.org"
     c.nick = "trellobot"
-    c.channels = ["#dublinjs"]
+    c.channels = ["#dubinjs"]
     sync_board "https://api.trello.com/1/boards/4f05b412cf33c09c016a90df/lists"
   end
 
   on :message, /^trellobot/ do |m|
-    puts "Mesage is " + m.message
     if m.message =~ /ideas/ 
       ideas_list = $board.select { |l| "Ideas".eql?(l['name'])}
       unless ideas_list.empty?
@@ -33,6 +32,10 @@ bot = Cinch::Bot.new do
     else
       m.reply "Ok, I don't know what that meant."
     end
+  end
+  
+  on :private, /quit/ do |m|
+    bot.quit
   end
 end
 
