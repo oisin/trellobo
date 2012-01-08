@@ -35,16 +35,18 @@ If you know your username, you can list all your boards, with their ids. You the
     "url": "https://trello.com/dublinjavascript",
     "boards": [
         {
-            **"id": "4f05b412cf33c09c016a90df",**
+            "id": "4f05b412cf33c09c016a90df",           ---- this is what you want
             "name": "Dublin Javascript Talks"
         }
     ]
 }
 </code></pre>
 
-The boldfaced **id** up there is the piece you are looking for - put this into a URL like this:
+The *boards[0]['id']* up there is the piece you are looking for - put this into a URL like this:
 
-  https://api.trello.com/1/boards/**4f05b412cf33c09c016a90df**/lists
+<pre><code>
+  https://api.trello.com/1/boards/4f05b412cf33c09c016a90df/lists
+</code></pre>
 
 and that is your TRELLO\_BOARD\_API\_URL.
 
