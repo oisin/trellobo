@@ -24,7 +24,6 @@ I used the magic of _curl_ for this particular job of discovery. The Trello API 
 
 If you know your username, you can list all your boards, with their ids. You then use the id to get API URL of the board. In this example, I'm listing all _public_ boards of the _dublinjavascript_ member and limiting the data returned on the boards to just the _name_ field (nice idea on the filtering guys) of the board. The id comes back for free, of course.
 
-<code>
 61%  curl https://api.trello.com/1/members/dublinjavascript?key=TRELLO\_API\_KEY\&boards=public\&board_fields=name
 {
     "id": _the id of the member_,
@@ -40,13 +39,10 @@ If you know your username, you can list all your boards, with their ids. You the
         }
     ]
 }
-</code>
 
-The boldfaced **id** up there is the piece you are looking for - put this into a URL like this
+The boldfaced **id** up there is the piece you are looking for - put this into a URL like this:
 
-<code>
   https://api.trello.com/1/boards/**4f05b412cf33c09c016a90df**/lists
-</code>
 
 and that is your TRELLO\_BOARD\_API\_URL.
 
