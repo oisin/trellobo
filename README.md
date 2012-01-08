@@ -13,10 +13,10 @@ Trellobot understands the commands *help* and *sync*. Anything else it interpret
 Trellobot needs the following in the ENV to operate:
 <table>
   <tr><th>ENV</th><th>Content</th></tr>
-  <tr><td>TRELLO\_API\_KEY</td><td>Your Trello developer API key</td></tr>
-  <tr><td>TRELLO\_BOARD\_API_URL</td><td>The API URL for your board</td></tr>
-  <tr><td>TRELLO\_BOARD\_HUMAN_URL</td><td>The human-friendly URL for your board</td></tr>
-  <tr><td>TRELLO\_BOT\_CHANNEL</td><td>The channel that trellobot should join</td></tr>
+  <tr><td>TRELLO_API_KEY</td><td>Your Trello developer API key</td></tr>
+  <tr><td>TRELLO_BOARD_API_URL</td><td>The API URL for your board</td></tr>
+  <tr><td>TRELLO_BOARD_HUMAN_URL</td><td>The human-friendly URL for your board</td></tr>
+  <tr><td>TRELLO_BOT_CHANNEL</td><td>The channel that trellobot should join</td></tr>
 </table>  
 
 ## Where do I get the API URL for my board?
