@@ -50,3 +50,6 @@ The *boards[0]['id']* up there is the piece you are looking for - put this into 
 
 and that is your TRELLO\_BOARD\_API\_URL.
 
+## Pull Requests
+
+Pull requests are welcome once I have automated tests :)
