@@ -52,4 +52,4 @@ and that is your TRELLO\_BOARD\_API\_URL.
 
 ## Pull Requests
 
-Pull requests are welcome once I have automated tests :)
+Pull requests are welcome :)
