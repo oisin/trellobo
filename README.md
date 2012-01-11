@@ -17,7 +17,7 @@ Trellobot needs the following in the ENV to operate:
   <tr><td>TRELLO_API_SECRET</td><td>Your Trello developer API secret</td></tr>
   <tr><td>TRELLO_BOARD_ID</td><td>The ID for your board</td></tr>
   <tr><td>TRELLO_BOARD_HUMAN_URL</td><td>The human-friendly URL for your board</td></tr>
-  <tr><td>TRELLO_BOT_CHANNEL</td><td>The channel that trellobot should join</td></tr>
+  <tr><td>TRELLO_BOT_CHANNEL</td><td>The channel that trellobot should join - form is #channel - don't forget quotes for shell protection!</td></tr>
 </table>
 
 ## Where do I get an API key and API secret?
