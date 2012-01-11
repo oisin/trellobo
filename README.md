@@ -14,10 +14,11 @@ Trellobot needs the following in the ENV to operate:
 <table>
   <tr><th>ENV</th><th>Content</th></tr>
   <tr><td>TRELLO_API_KEY</td><td>Your Trello developer API key</td></tr>
-  <tr><td>TRELLO_BOARD_API_URL</td><td>The API URL for your board</td></tr>
+  <tr><td>TRELLO_API_SECRET</td><td>Your Trello developer API secret</td></tr>
+  <tr><td>TRELLO_BOARD_ID</td><td>The ID for your board</td></tr>
   <tr><td>TRELLO_BOARD_HUMAN_URL</td><td>The human-friendly URL for your board</td></tr>
   <tr><td>TRELLO_BOT_CHANNEL</td><td>The channel that trellobot should join</td></tr>
-</table>  
+</table>
 
 ## Where do I get the API URL for my board?
 I used the magic of _curl_ for this particular job of discovery. The Trello API covers a lot, [as you can read in the beta docs](https://trello.com/docs/api/index.html) and sometimes it's not immediately obvious where to grab on to find a particular piece of information. 
@@ -42,13 +43,7 @@ If you know your username, you can list all your boards, with their ids. You the
 }
 </code></pre>
 
-The *boards[0]['id']* up there is the piece you are looking for - put this into a URL like this:
-
-<pre><code>
-  https://api.trello.com/1/boards/4f05b412cf33c09c016a90df/lists
-</code></pre>
-
-and that is your TRELLO\_BOARD\_API\_URL.
+The *boards[0]['id']* up there is the piece you are looking for - put this into the `TRELLO_BOARD_ID` environment variable.
 
 ## Pull Requests
 
