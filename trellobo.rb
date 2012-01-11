@@ -1,20 +1,24 @@
 require 'cinch'
-require 'rest_client'
+require 'trello'
 require 'json'
 
-# there are 4 environment variables that must be set for the trellobot to behave
+# there are 5 environment variables that must be set for the trellobot to behave
 # the way he is supposed to - 
 #
 # TRELLO_API_KEY : your Trello API developer key
+# TRELLO_API_SECRET : your Trello API developer secret
 # TRELLO_BOT_CHANNEL : the name of the channel you want trellobot to live on, the server is freenode
-# TRELLO_BOARD_API_URL : the trellobot looks at only one board and the lists on it, put the api url here
+# TRELLO_BOARD_ID : the trellobot looks at only one board and the lists on it, put its id here
 # TRELLO_BOARD_HUMAN_URL : the trellobot will send the human here if he can't get the lists or cards
 
 $board = nil
 
+Trello::Client.public_key = ENV['TRELLO_API_KEY']
+Trello::Client.secret     = ENV['TRELLO_API_SECRET']
+
 def sync_board
-  data = RestClient.get ENV['TRELLO_BOARD_API_URL'], {:params => {:key => ENV['TRELLO_API_KEY']}, :accept => "json"}
-  $board = JSON.parse(data)
+  # Find the board each time, since ruby-trello currently does not have a `refresh` call. This will come in 0.3.0.
+  $board = Trello::Board.find(ENV['TRELLO_BOARD_ID'])
 end
 
 def say_help(msg)
@@ -57,19 +61,20 @@ bot = Cinch::Bot.new do
           # trellobot presumes you know what you are doing and will attempt
           # to retrieve cards using the text you put in the message to him
           # at least the comparison is not case sensitive
-          list = $board.select { |l| searchfor.eql?(l['name'].strip.downcase)}
-          if list.empty?
+          list = $board.lists.detect { |l| l.name.casecmp(searchfor) == 0 }
+          #list = $board.select { |l| searchfor.eql?(l['name'].strip.downcase)}
+          if list.nil?
             m.reply "There's no list called <#{searchfor}> on the board, #{m.user.nick}. Sorry."
           else
-            cards = list[0]['cards']
+            cards = list.cards
             if cards.count == 0
               m.reply "Nothing doing on that list today, #{m.user.nick}."
             else
               ess = (cards.count == 1) ? "" : "s"
               m.reply "I have #{cards.count} card#{ess} today"
               inx = 1
-              cards.each { |i|
-                m.reply "  ->  #{inx.to_s}. #{i['name']}"
+              cards.each { |c|
+                m.reply "  ->  #{inx.to_s}. #{c.name}"
                 inx += 1
               }
             end
