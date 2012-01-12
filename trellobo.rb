@@ -2,14 +2,13 @@ require 'cinch'
 require 'trello'
 require 'json'
 
-# there are 5 environment variables that must be set for the trellobot to behave
+# there are 4 environment variables that must be set for the trellobot to behave
 # the way he is supposed to - 
 #
 # TRELLO_API_KEY : your Trello API developer key
 # TRELLO_API_SECRET : your Trello API developer secret
 # TRELLO_BOT_CHANNEL : the name of the channel you want trellobot to live on, the server is freenode
 # TRELLO_BOARD_ID : the trellobot looks at only one board and the lists on it, put its id here
-# TRELLO_BOARD_HUMAN_URL : the trellobot will send the human here if he can't get the lists or cards
 
 $board = nil
 
@@ -42,7 +41,7 @@ bot = Cinch::Bot.new do
     # if trellobot can't get thru to the board, then send the human to the human url
     sync_board unless $board
     unless $board
-      m.reply "I can't seem to get the list of ideas from Trello, sorry. Try here: #{ENV['TRELLO_BOARD_HUMAN_URL']}" 
+      m.reply "I can't seem to get the list of ideas from Trello, sorry. Try here: https://trello.com/board/#{ENV['TRELLO_BOARD_ID']}" 
       bot.halt
     end
     
