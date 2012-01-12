@@ -54,3 +54,5 @@ I've seen one weirdness on Heroku where a dyno running Trellobot appeared to dis
 ## Pull Requests
 
 Pull requests are welcome :)
+
+[@oisin](http://twitter.com/oisin)
