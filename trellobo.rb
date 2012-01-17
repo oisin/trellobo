@@ -26,6 +26,7 @@ def say_help(msg)
   msg.reply "I also understand the these commands : "
   msg.reply "  -> 1. help - shows this!"
   msg.reply "  -> 2. sync - resyncs my cache with the board."
+  msg.reply "  -> 3. lists - show me all the board list names"
 end
 
 bot = Cinch::Bot.new do
@@ -50,6 +51,10 @@ bot = Cinch::Bot.new do
     searchfor = parts[1].strip.downcase
     
     case searchfor
+      when /lists/
+        $board.lists.each { |l| 
+          m.reply "  ->  #{l.name}"
+        }
       when /help/
         say_help(m)
       when /sync/
@@ -61,7 +66,6 @@ bot = Cinch::Bot.new do
           # to retrieve cards using the text you put in the message to him
           # at least the comparison is not case sensitive
           list = $board.lists.detect { |l| l.name.casecmp(searchfor) == 0 }
-          #list = $board.select { |l| searchfor.eql?(l['name'].strip.downcase)}
           if list.nil?
             m.reply "There's no list called <#{searchfor}> on the board, #{m.user.nick}. Sorry."
           else
