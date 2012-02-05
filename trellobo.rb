@@ -2,21 +2,33 @@ require 'cinch'
 require 'trello'
 require 'json'
 
-# there are 4 environment variables that must be set for the trellobot to behave
+# You will need an access token to use ruby-trello 0.3.0 or higher, which trellobo depends on. To
+# get it, you'll need to go to this URL:
+#
+# https://trello.com/1/connect?key=DEVELOPER_PUBLIC_KEY&name=trellobo&response_type=token&scope=read,write&expiration=never
+#
+# Substitute the DEVELOPER_PUBLIC_KEY with the value oyu'll supply in TRELLO_API_KEY below. At the end of this process,
+# You'll be told to give some key to the app, this is what you want to put in the TRELLO_API_ACCESS_TOKEN_KEY below.
+#
+# there are 5 environment variables that must be set for the trellobot to behave
 # the way he is supposed to - 
 #
 # TRELLO_API_KEY : your Trello API developer key
 # TRELLO_API_SECRET : your Trello API developer secret
+# TRELLO_API_ACCESS_TOKEN_KEY : your Trello API access token key. See above how to generate it.
 # TRELLO_BOT_CHANNEL : the name of the channel you want trellobot to live on, the server is freenode
 # TRELLO_BOARD_ID : the trellobot looks at only one board and the lists on it, put its id here
 
 $board = nil
 
-Trello::Client.public_key = ENV['TRELLO_API_KEY']
-Trello::Client.secret     = ENV['TRELLO_API_SECRET']
+include Trello
+include Trello::Authorization
+Trello::Authorization.const_set :AuthPolicy, OAuthPolicy
+OAuthPolicy.consumer_credential = OAuthCredential.new ENV['TRELLO_API_KEY'], ENV['TRELLO_API_SECRET']
+OAuthPolicy.token = OAuthCredential.new ENV['TRELLO_API_ACCESS_TOKEN_KEY'], nil
 
 def sync_board
-  # Find the board each time, since ruby-trello currently does not have a `refresh` call. This will come in 0.3.0.
+  return $board.refresh! if $board
   $board = Trello::Board.find(ENV['TRELLO_BOARD_ID'])
 end
 
