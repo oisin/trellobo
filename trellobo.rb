@@ -7,7 +7,7 @@ require 'json'
 #
 # https://trello.com/1/connect?key=DEVELOPER_PUBLIC_KEY&name=trellobo&response_type=token&scope=read,write&expiration=never
 #
-# Substitute the DEVELOPER_PUBLIC_KEY with the value oyu'll supply in TRELLO_API_KEY below. At the end of this process,
+# Substitute the DEVELOPER_PUBLIC_KEY with the value you'll supply in TRELLO_API_KEY below. At the end of this process,
 # You'll be told to give some key to the app, this is what you want to put in the TRELLO_API_ACCESS_TOKEN_KEY below.
 #
 # there are 5 environment variables that must be set for the trellobot to behave
