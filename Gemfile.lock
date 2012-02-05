@@ -4,10 +4,14 @@ GEM
     addressable (2.2.6)
     cinch (1.1.3)
     json (1.6.2)
+    mime-types (1.17.2)
     oauth (0.4.5)
-    ruby-trello (0.2.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    ruby-trello (0.3.1)
       addressable (~> 2.2.6)
       oauth (~> 0.4.5)
+      rest-client (~> 1.6.7)
       yajl-ruby (>= 1.1.0)
     yajl-ruby (1.1.0)
 
@@ -17,4 +21,4 @@ PLATFORMS
 DEPENDENCIES
   cinch
   json
-  ruby-trello
+  ruby-trello (~> 0.3.1)
