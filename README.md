@@ -23,6 +23,13 @@ Trellobot needs the following in the ENV to operate:
 ## Where do I get an API key and API secret?
 Log in as a Trello user and visit this URL to get a key and secret allocated: https://trello.com/1/appKey/generate
 
+## Where do I get an API Access Token Key?
+You will need an access token to use ruby-trello 0.3.0 or higher, which trellobo depends on. To get it, you'll need to go to this URL:
+
+https://trello.com/1/connect?key=TRELLO_API_KEY&name=trellobo&response_type=token&scope=read,write&expiration=never
+
+At the end of this process, You'll be told to give some key to the app, this is what you want to put in the TRELLO_API_ACCESS_TOKEN_KEY
+
 ## Where do I get the BOARD ID for my board?
 I used the magic of _curl_ for this particular job of discovery. The Trello API covers a lot, [as you can read in the beta docs](https://trello.com/docs/api/index.html) and sometimes it's not immediately obvious where to grab on to find a particular piece of information. 
 
