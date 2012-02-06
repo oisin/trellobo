@@ -31,7 +31,14 @@ https://trello.com/1/connect?key=TRELLO_API_KEY&name=trellobo&response_type=toke
 At the end of this process, You'll be told to give some key to the app, this is what you want to put in the TRELLO_API_ACCESS_TOKEN_KEY
 
 ## Where do I get the BOARD ID for my board?
-I used the magic of _curl_ for this particular job of discovery. The Trello API covers a lot, [as you can read in the beta docs](https://trello.com/docs/api/index.html) and sometimes it's not immediately obvious where to grab on to find a particular piece of information. 
+
+The simplest way to get the id of your board is to 
+
+1. Browse to it on the trello website
+2. Observe the URL; it should look something like https://trello.com/board/welcome-board/4e6a8095efa69909ba007382
+3. The id of your board is the 24-digit hex number at the end of the URL.  In this case, it's `4e6a8095efa69909ba007382`
+
+Initially, I used the magic of _curl_ for this particular job of discovery. The Trello API covers a lot, [as you can read in the beta docs](https://trello.com/docs/api/index.html) and sometimes it's not immediately obvious where to grab on to find a particular piece of information. 
 
 If you know your username, you can list all your boards, with their ids. You then use the id to get API URL of the board. In this example, I'm listing all _public_ boards of the _dublinjavascript_ member and limiting the data returned on the boards to just the _name_ field (nice idea on the filtering guys) of the board. The id comes back for free, of course.
 
