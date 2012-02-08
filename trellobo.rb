@@ -16,13 +16,17 @@ require 'json'
 # TRELLO_API_KEY : your Trello API developer key
 # TRELLO_API_SECRET : your Trello API developer secret
 # TRELLO_API_ACCESS_TOKEN_KEY : your Trello API access token key. See above how to generate it.
-# TRELLO_BOT_CHANNEL : the name of the channel you want trellobot to live on, the server is freenode
 # TRELLO_BOARD_ID : the trellobot looks at only one board and the lists on it, put its id here
+# TRELLO_BOT_QUIT_CODE : passcode to cause trellobot to quit - defaults to none
+# TRELLO_BOT_CHANNEL : the name of the channel you want trellobot to live on
+# TRELLO_BOT_NAME : the name for the bot, defaults to 'trellobot'
+# TRELLO_BOT_SERVER : the server to connect to, defaults to 'irc.freenode.net'
 
 $board = nil
 
 include Trello
 include Trello::Authorization
+
 Trello::Authorization.const_set :AuthPolicy, OAuthPolicy
 OAuthPolicy.consumer_credential = OAuthCredential.new ENV['TRELLO_API_KEY'], ENV['TRELLO_API_SECRET']
 OAuthPolicy.token = OAuthCredential.new ENV['TRELLO_API_ACCESS_TOKEN_KEY'], nil
@@ -43,8 +47,13 @@ end
 
 bot = Cinch::Bot.new do
   configure do |c|
-    c.server = "irc.freenode.net"
-    c.nick = "trellobot"
+    # Initialize defaults for optional envs
+    ENV['TRELLO_BOT_QUIT_CODE'] ||= ""
+    ENV['TRELLO_BOT_NAME'] ||= "trellobot"
+    ENV['TRELLO_BOT_SERVER'] ||= "irc.freenode.net"
+
+    c.server = ENV['TRELLO_BOT_SERVER']
+    c.nick = ENV['TRELLO_BOT_NAME']
     c.channels = [ENV['TRELLO_BOT_CHANNEL']]
     sync_board
   end
@@ -63,11 +72,14 @@ bot = Cinch::Bot.new do
     searchfor = parts[1].strip.downcase
     
     case searchfor
+      when /debug/
+        debugger
       when /lists/
         $board.lists.each { |l| 
           m.reply "  ->  #{l.name}"
         }
       when /help/
+      when /\?/
         say_help(m)
       when /sync/
         sync_board
@@ -103,8 +115,14 @@ bot = Cinch::Bot.new do
   # if trellobot loses his marbles, it's easy to disconnect him from the server
   # note that if you are doing a PaaS deploy, he may respawn depending on what 
   # the particular hosting env is (e.g. Heroku will start him up again)
-  on :private, /quit/ do |m|
-    bot.quit
+  on :private, /^quit(\s*)(\w*)/ do |m, blank, code|
+    bot.quit if ENV['TRELLO_BOT_QUIT_CODE'].eql?(code)
+     
+    if code.empty?
+      m.reply "There is a quit code required for this bot, sorry."
+    else
+      m.reply "That is not the correct quit code required for this bot, sorry."
+    end
   end
 end
 

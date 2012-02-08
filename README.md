@@ -7,7 +7,7 @@ The Trello API is used in readonly mode in this code, so all you need to access 
 
 At some point in Trellobot's life, it will gain the capability to add cards to lists on a Trello board. That needs a little more development, with addition of Oauth capability to the Trellobot server.
 
-Trellobot understands the commands *help* and *sync*. Anything else it interprets as the name of a list on the target board that has been configured. If you send a private message containing *quit*, then Trellobot will disconnect from the server (and exit). Depending on how you have it deployed, it may very well respawn at that point, for example if you run it as a [Heroku](http://www.heroku.com) dyno. 
+Trellobot understands the commands *help*, *lists* and *sync*. Anything else it interprets as the name of a list on the target board that has been configured. If you send a private message containing *quit*, accompanied by a passphrase, then Trellobot will disconnect from the server (and exit). Depending on how you have it deployed, it may very well respawn at that point, for example if you run it as a [Heroku](http://www.heroku.com) dyno. 
 
 ## Environment Vars
 Trellobot needs the following in the ENV to operate:
@@ -18,6 +18,9 @@ Trellobot needs the following in the ENV to operate:
   <tr><td>TRELLO_API_ACCESS_TOKEN_KEY</td><td>Your Trello API access token key</td></tr>
   <tr><td>TRELLO_BOARD_ID</td><td>The ID for your board</td></tr>
   <tr><td>TRELLO_BOT_CHANNEL</td><td>The channel that trellobot should join - form is #channel - don't forget quotes for shell protection!</td></tr>
+  <tr><td>TRELLO_BOT_SERVER</td><td>The server the trellobot should connect to, defaults to <em>irc.freenode.net</em></td></tr>
+  <tr><td>TRELLO_BOT_NAME</td><td>The name the trellobot should use, defaults to <em>trellobot</em></td></tr>
+  <tr><td>TRELLO_BOT_QUIT_CODE</td><td> Passcode to cause trellobot to quit - defaults to empty</td></tr>
 </table>
 
 ## Where do I get an API key and API secret?
