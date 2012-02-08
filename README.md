@@ -10,7 +10,7 @@ At some point in Trellobot's life, it will gain the capability to add cards to l
 Trellobot understands the commands *help*, *lists* and *sync*. Anything else it interprets as the name of a list on the target board that has been configured. If you send a private message containing *quit*, accompanied by a passphrase, then Trellobot will disconnect from the server (and exit). Depending on how you have it deployed, it may very well respawn at that point, for example if you run it as a [Heroku](http://www.heroku.com) dyno. 
 
 ## Environment Vars
-Trellobot needs the following in the ENV to operate:
+Trellobot has quite a few env vars that is uses. Some of these are optional:
 <table>
   <tr><th>ENV</th><th>Content</th></tr>
   <tr><td>TRELLO_API_KEY</td><td>Your Trello developer API key</td></tr>
