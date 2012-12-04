@@ -54,7 +54,12 @@ bot = Cinch::Bot.new do
 
     c.server = ENV['TRELLO_BOT_SERVER']
     c.nick = ENV['TRELLO_BOT_NAME']
-    c.channels = [ENV['TRELLO_BOT_CHANNEL']]
+
+    if !ENV["TRELLO_BOT_CHANNEL_KEY"].nil? and ENV["TRELLO_BOT_CHANNEL_KEY"] != ""
+      c.channels = ["#{ENV['TRELLO_BOT_CHANNEL']} #{ENV['TRELLO_BOT_CHANNEL_KEY']}"]
+    else
+      c.channels = [ENV['TRELLO_BOT_CHANNEL']]
+    end
     sync_board
   end
 
