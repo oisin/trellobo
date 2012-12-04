@@ -60,6 +60,10 @@ bot = Cinch::Bot.new do
     else
       c.channels = [ENV['TRELLO_BOT_CHANNEL']]
     end
+    if ENV['TRELLO_SSL'] == "true"
+      c.port = ENV['TRELLO_SSL_PORT']
+      c.ssl.use = true
+    end
     sync_board
   end
 
