@@ -68,7 +68,7 @@ bot = Cinch::Bot.new do
   end
 
   # trellobot is polite, and will only reply when addressed
-  on :message, /^trellobot[_]*:/ do |m|
+  on :message, /^#{ENV['TRELLO_BOT_NAME']}[_]*:/ do |m|
     # if trellobot can't get thru to the board, then send the human to the human url
     sync_board unless $board
     unless $board
