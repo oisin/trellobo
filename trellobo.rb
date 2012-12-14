@@ -26,7 +26,7 @@ require_relative './mailer.rb'
 # TRELLO_BOT_SERVER : the server to connect to, defaults to 'irc.freenode.net'
 # TRELLO_BOT_SERVER_USE_SSL : if ssl is required set this variable to "true" if not, do not set it at all. Optional
 # TRELLO_BOT_SERVER_SSL_PORT : if ssl is used set this variable to the port number that should be used. Optional
-# TRELLO_ADD_CARDS_LIST : all cards are added at creation time to a default list. Set this variable to the
+# TRELLO_ADD_CARDS_LIST : all cards are added at creation time to a default list. Set this variable to the name of this list, otherwise it will default to To Do. Optional
 # TRELLO_MAIL_ADDRESS : address of the mail server used to send the cards
 # TRELLO_MAIL_PORT : port of the mail server used to send the cards
 # TRELLO_MAIL_AUTHENTICATION : type of authentication of the mail server used to send the cards
