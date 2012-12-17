@@ -3,9 +3,7 @@ This is a simple IRC bot written using [cinch](http://github.com/cinchrb/cinch).
 
 This incarnation is generalized a little, and it can serve as a (simple) general purpose IRC bot that will communicate with Trello. Configuration of API key and secret, channel name and URLs are driven thru ENV.
 
-The Trello API is used in readonly mode in this code, so all you need to access is your developer key, providing the board is public. Trellobot uses the [Trello API Ruby wrapper](https://github.com/jeremytregunna/ruby-trello) for this purpose.
-
-Trellobot also has the capability to add cards to lists on a Trello board.
+All you need to access is your developer key, providing the board is public. Trellobot uses the [Trello API Ruby wrapper](https://github.com/jeremytregunna/ruby-trello) for this purpose. Trellobot has the capability to add cards to lists on a Trello board.
 
 Trellobot understands the following commands:
   1. help - Displays help.
@@ -41,7 +39,7 @@ Trellobot has quite a few env vars that is uses. Some of these are optional:
   <tr><td>TRELLO_MAIL_AUTHENTICATION</td><td> Type of authentication of the mail server used to send the cards</td></tr>
   <tr><td>TRELLO_MAIL_USERNAME</td><td> Username in the mail server used to send the cards</td></tr>
   <tr><td>TRELLO_MAIL_PASSWORD</td><td> Password for the username in the mail server used to send the cards</td></tr>
-  <tr><td>TRELLO_MAIL_ENABLE_STARTTLS_AUTO</td><td> Set tu true if the mail server uses tls, false otherwise</td></tr>
+  <tr><td>TRELLO_MAIL_ENABLE_STARTTLS_AUTO</td><td> Set to true if the mail server uses tls, false otherwise</td></tr>
 </table>
 
 ## Where do I get an API key and API secret?
