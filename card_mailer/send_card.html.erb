@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html language="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="description" conatent="Descripcion"/>
+	<meta name="viewport" conatent="width=divice-width,initial-scale=1"/>
+	<title>Trellobot Card: <%= @card.name %></title>
+	<!-- <link rel="stylesheet" type="text/css" href="./styles.css"> -->
+<style>
+*{
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: rgb(22, 75, 105);
+	color: rgb(57, 57, 57);
+	font-family: Arial, Helvetica;
+	font-size: 1em;
+}
+
+a, #said{
+	display: inline-block;
+	margin:0.3em;
+}
+
+div, h4{
+	padding-top:0.5em;
+}
+
+h5{
+	font-size:1em;
+	margin-left:1em;
+	margin-top:1em;
+}
+
+hr {
+	background: rgb(220, 220, 220);
+	height: 1px;
+	margin: 15px 0px;
+	width: 80%;
+}
+
+input,ul{
+	margin:0 0.5em 0.3em;
+	margin-top:1em;
+}
+
+p, .general{
+	display: inline-block;
+}
+
+#container{
+	background: rgb(240, 240, 240);
+	max-width: 80%;
+	margin: 0 auto;
+	padding-left:2em;
+	text-align: left;
+}
+
+#general li{
+	margin-left:2em;
+	margin-top:0.5em;
+}
+
+#labels li {
+	border-radius: 0.5em;
+	list-style: none;
+	margin-bottom: 1em;
+	max-width: 15%;
+	padding-bottom: 1em;
+	text-align:center;
+}
+
+#purple{
+	background: rgb(153, 51, 204);
+	color: rgb(153, 51, 204);
+}
+#red{
+	background: rgb(182, 15, 9);
+	color: rgb(182, 15, 9);
+}
+
+#yellow{
+	background: rgb(234, 253, 25);
+	color: rgb(234, 253, 25);
+}
+
+#green{
+	background:#34B27D;
+	color:#34B27D;
+}
+
+#orange{
+	background:#E09952;
+	color:#E09952;
+}
+
+#blue{
+	background:#4D77CB;
+	color:#4D77CB;
+}
+
+#comments{
+	padding-bottom: 5em;
+}
+
+
+.comment{
+	margin-left: 3em;
+}
+</style>
+</head>
+<body>
+	<div id="container">
+		<div id="general">
+			<div id="name">
+				<h4 class="general">Name:</h4>
+				<p><%= @card.name %></p>
+			</div>
+			<div id="description">
+				<h4 class="general">Description:</h4>
+				<p><%= @card.description %></p>
+			</div>
+			<div id="due-to">
+				<h4 class="general">Due to:</h4>
+				<p><%= @card.due.to_s %></p>
+			</div>
+			<div id="is-closed">
+				<h4 class="general">Is Closed?:</h4>
+				<label><% if @card.closed == false %> No. <% else %> Yes. <% end %></label>
+			</div>
+			<div id="members">
+				<h4 class="general">Members:</h4>
+				<ul>
+				  <% @card.members.each do |m| %>
+				  <li><a href=<%= m.url %>> <%= m.full_name %> </a> </li>
+				  <% end %>
+				</ul>
+			</div>
+		</div>
+		<hr>
+		<div id="labels">
+			<h4>Labels:</h4>
+			<ul>
+			  <% @card.labels.each do |l| %>
+			  <li id=<%= l.color %>><% if l.name == "" %><%= l.color %> <% else %> <%= l.name + "(" + l.color + ")" %> <% end %></li>
+			  <% end %>
+			</ul>
+		</div>
+		<hr>
+		<div id="checklists">
+		  <% @card.checklists.each do |c| %>
+		  <h5> <%= c.name %> </h5>
+		    <%
+		       c.check_items.each do |ci|
+		       ch = @checkedlist.collect {|ccc| ccc if ccc[:id] == ci["id"]}.delete_if {|n| n.nil?}
+		       status = ch.max_by {|a| a[:date] }
+		       if !status.nil?
+		       status = status[:status]
+		       end
+		       %>
+		    <label><%= ci["name"] %></label><input type="checkbox" name=<%= ci["name"] %> value=<%= ci["name"]%> disabled="disabled" <% if status == "complete" %> checked="checked" <% end %> />
+		    <% end %>
+		  <% end %>
+		</div>
+		<hr>
+		<div id="comments">
+		  <h4>Comments:</h4>
+		  <% @comments.each do |cmmnt| %>
+		  <div class="comment">
+		    <a href=<%= cmmnt.member_creator.url %>> <%= cmmnt.member_creator.full_name %> </a> said: <br />
+		    <p><%= cmmnt.data["text"] %></p>
+		    <h6>at: <%= cmmnt.date %><h6>
+		    <hr>
+		  </div>
+		  <% end %>
+		</div>
+	</div>
+</body>
+</html>
