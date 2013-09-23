@@ -1,6 +1,6 @@
-source :rubygems
+source "https://rubygems.org"
 
 gem "cinch"
-gem "ruby-trello", '~> 0.4.4'
+gem "ruby-trello"
 gem "json"
-gem "action_mailer"
+gem "actionmailer"
