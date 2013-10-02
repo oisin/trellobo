@@ -93,3 +93,7 @@ I've seen one weirdness on Heroku where a dyno running Trellobot appeared to dis
 Pull requests are welcome :)
 
 [@oisin](http://twitter.com/oisin)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/oisin/trellobo/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
