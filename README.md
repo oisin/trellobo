@@ -1,3 +1,5 @@
+# This repo is OBSOLETE and has been archived
+
 ## Trellobo
 This is a simple IRC bot written using [cinch](http://github.com/cinchrb/cinch). The motivation for writing this was so that people using the *dublinjs* IRC channel could address the bot to get a list of the current ideas for Javascript subject matter talks that are stored as cards in a Trello board.
 
